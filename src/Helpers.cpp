@@ -37,11 +37,9 @@ static std::string invert(std::string source) {
 void main() {{
     main_uninverted();
 
-    // Invert Colors
-    {0}.rgb = vec3(1.) - vec3(.88, .9, .92) * {0}.rgb;
-
-    // Invert Hue
-    {0}.rgb = dot(vec3(0.26312, 0.5283, 0.10488), {0}.rgb) * 2.0 - {0}.rgb;
+    // Convert to grayscale using luminance weights
+    float luminance = dot({0}.rgb, vec3(0.299, 0.587, 0.114));
+    {0}.rgb = vec3(luminance);
 }}
     )glsl", outVar);
 
